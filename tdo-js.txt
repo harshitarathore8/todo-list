@@ -1,0 +1,77 @@
+var input= document.getElementById('input');
+var button=document.getElementById('button');
+var todoList=document.getElementById('todo-list');
+
+//create todo card
+function createTodo(enteredText){
+    var todoCard=document.createElement('div');
+    todoCard.classList.add('list-card');
+    todoCard.id=new Date().getTime();
+
+    var checkBox= document.createElement('div');
+    checkBox.classList.add('tick');
+    var tick= document.createElement('i');
+    tick.classList.add('fas');
+    tick.classList.add('fa-check');
+    checkBox.appendChild(tick);
+    todoCard.appendChild(checkBox);
+    
+    var text= document.createElement('p');
+    text.innerText=enteredText;
+    todoCard.appendChild(text);
+
+    var del=document.createElement('div');
+    del.classList.add('delete');
+    var trash=document.createElement('i');
+    trash.classList.add('fas');
+    trash.classList.add('fa-trash');
+    del.appendChild(trash);
+    todoCard.appendChild(del);
+    
+    del.addEventListener('click',function(){
+        var delData=document.getElementById(todoCard.id);
+         todoList.removeChild(delData);
+      window.localStorage.removeItem(todoCard.id,text);
+    })
+
+    checkBox.addEventListener('click',function(){
+            if(window.getComputedStyle(checkBox).color == "rgb(0, 0, 0)"){
+                checkBox.style.color="aqua";
+                text.classList.add('para');
+                del.style.color="aqua";
+                var tickDel=document.getElementById(todoCard.id);
+                todoList.removeChild(tickDel);
+                todoList.appendChild(tickDel);
+            }
+            else{
+                checkBox.style.color="rgb(0, 0, 0)";
+                text.classList.remove('para');
+                del.style.color="grey";
+            }
+    })
+  var stringCard=JSON.stringify(todoCard.id,text);
+  window.localStorage.setItem(stringCard, stringCard.value);
+  
+return todoCard;  
+}
+
+function todohandler(){
+    if(input.value !== null && input.value !== ""){
+      todoList.appendChild(createTodo(input.value));
+          input.value="";  
+     
+    }
+    else{
+        alert('Please enter valid input!!');
+    }
+}
+
+button.addEventListener('click',function(){ 
+      todohandler();      
+});
+
+input.addEventListener('keyup',function(e){
+    if(e.which=='13'){ 
+    todohandler();
+}
+});

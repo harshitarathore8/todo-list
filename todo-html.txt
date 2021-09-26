@@ -1,0 +1,17 @@
+<script src="https://kit.fontawesome.com/4435a4b9d2.js" crossorigin="anonymous"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+ <h1 id="heading">
+                <i class="fas fa-clipboard-list"></i> Let's make your ToDo list <i class="fas fa-clipboard-list"></i></h1> 
+             <div id="table">
+                 <h1>Today's Task :-</h1>
+                <div id="todo-list">
+
+                </div>
+
+                <div id="bottom"> 
+                <input id="input"type="text" placeholder="e.g- Meeting 6 PM"/>
+                <button id="button"type="button">ADD TASK</button>
+                 </div>
+             </div>
+
